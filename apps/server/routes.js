@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import { create, findAll } from './controllers/users/index.js'
+import { singUp, findAll } from './controllers/users/index.js'
 
 export const routes = Router()
 
 routes.get('/', findAll)
-routes.post('/', create)
+routes.post('/signup', singUp)

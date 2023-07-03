@@ -26,20 +26,13 @@ O back-end desse projeto é construído em Node.js, mais especificamente sua ver
 
 > Você pode instalar o Node.js seguindo [esse guia](https://efficient-sloth-d85.notion.site/Instalando-o-Node-js-d40fdabe8f0a491eb33b85da93d90a2f).
 
-Além do Node.js, utilizamos o banco de dados PostgreSQL e **recomendamos** o uso do Docker para executar o banco em sua máquina.
-
-> Você pode instalar o Docker seguindo [esse guia](https://www.youtube.com/watch?v=Gpal5KsSHMQ).
-
-Após instalar o Node.js e o Docker, vamos acessar a pasta do projeto back-end, subir o serviço do banco de dados, configurar nossas variáveis ambiente e, então, subir o servidor HTTP.
+Além do Node.js, utilizamos o banco de dados MySql vis ORM Prisma
 
 ```sh
 cd apps/server
 
 # Copiar o arquivo com os dados de conexão e demais variáveis ambiente
-cp .env.example .env
-
-# Subir o serviço do PostgreSQL via docker (caso não tenha instalado o PostgreSQL em seu computador)
-docker compose up -d
+mrkdir .env.example .env
 
 # Subir o servidor HTTP
 npm run start:dev
@@ -47,20 +40,9 @@ npm run start:dev
 
 ### Mobile
 
-Para executar o app mobile utilizamos o Expo, uma ferramenta incrível da comunidade React Native. Além do Expo, é necessário que você utilize algum emulador local ou um dispositivo físico pra visualizar a aplicação.
-
-> Você pode instalar o Expo e os emuladores seguindo esse guia.
-
-
-Após configurar o ambiente mobile, você pode abrir o emulador e executar o projeto de acordo com a plataforma que estiver utilizando:
+Para executar o app mobile pwa. Experência par ausuário de uma app nativo porém que roda no navegador.
 
 ```sh
-# Caso esteja usando Android
-npm run android
-
-# Caso esteja usando iOS
-npm run ios
-
 # Caso esteja usando um dispositivo físico
 npm start
 ```
@@ -70,19 +52,20 @@ npm start
 
 **📱 Mobile:**
 
-- [Expo](https://github.com/expo/expo)
-- [NativeWind](https://github.com/marklawlor/nativewind) _(Tailwind para o React Native)_
+- [PWA](https://web.dev/learn/pwa/)
+- [React](https://github.com/facebook/react/)
+- [Tailwind](https://github.com/tailwindlabs/tailwindcss)
 
 **🏧 Server:**
 
 - [Express](https://github.com/expressjs/express)
 - [Prisma](https://github.com/prisma/prisma)
-- [PostgreSQL](https://github.com/postgres) 
+- [Mysql](https://github.com/mysql) 
 
 &nbsp;
 
 ## 🚀 Funcionalidades: 
-Até o momento, levando em consideração o prazo de 2 meses (Due: 05/07/2023), listamos algumas funcionalidades básicas para ser entregue.
+Até o momento, levando em consideração o prazo de 2 meses (Due: 23/06/2023), listei algumas funcionalidades básicas para ser entregue na primeira parte do App.
 
 ### Funcionalidades 1.0 (MVP): 
 
