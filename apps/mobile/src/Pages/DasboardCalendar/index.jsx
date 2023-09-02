@@ -1,5 +1,5 @@
-function DasboardCalendar() {
-  return <h1>DasboardCalendar</h1>
+function DashboardCalendar() {
+  return <h1>DashboardCalendar</h1>
 }
 
-export default DasboardCalendar
+export default DashboardCalendar

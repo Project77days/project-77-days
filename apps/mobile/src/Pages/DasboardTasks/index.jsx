@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import avatar from '../../assets/avatar.png'
 
-function DasboardTasks() {
+function DashboardTasks() {
   const [check, setCheck] = useState(false)
 
   function Ischeck(event) {
@@ -48,4 +48,4 @@ function DasboardTasks() {
   )
 }
 
-export default DasboardTasks
+export default DashboardTasks
