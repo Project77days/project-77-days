@@ -15,3 +15,7 @@ d
 -apps/mobile/src/Pages/DasboardTasks/index.jsx,2/9/29786eb62feb0a9c584eb28a5fdde0687a658f0a
 V
 &apps/server/controllers/users/index.js,e/4/e4510884537a06822d312d9b2115bd8c6b180b3c
+]
+-apps/mobile/src/Components/PageRoot/index.jsx,c/f/cf1864fafa161ffdc7a45e13026649a94e0666cf
+7
+LICENSE,0/3/0398ccd0f49298b10a3d76a47800d2ebecd49859
