@@ -1,7 +1,6 @@
 import { usersRepository } from '../repositories/UsersRepository.js';
 
 class UserController{
-
   async index(req, res){
     const users = await usersRepository.findAll()
     res.status(200).end(JSON.stringify(users))
@@ -9,39 +8,40 @@ class UserController{
 
   async findById(req, res){
     const { id } = req.params
-    const userById = await usersRepository.findById(id);
-
-    if(!userById){
-      return res.status(404).json({error:'User not found'})
+    try{
+      const userById = await usersRepository.findById(id)
+      return res.status(200).send(JSON.stringify(userById))
+    }catch(error){
+      return res.status(404).end(JSON.stringify("Ops, ocorreu um error!"))
     }
-
-    res.status(200).end(JSON.stringify(userById))
   }
 
   async create(res, req){  
     const data = res.body;
-    const user = await usersRepository.create(data);
-
-    if(!user){
-      return res.status(404).json({error:'User to registrer'})
+    try{
+      const user = await usersRepository.create(data);
+      return res.status(201).send(JSON.stringify(user))
+    }catch(error){
+      if(error.code == "P2002"){
+        return req.status(404).send(JSON.stringify("Email já cadastrado"))
+      }
+      return req.status(404).end(JSON.stringify("Ops! Aconteceu um erro, tente novamente"))
     }
-
-    res.status(201).end(JSON.stringify(user))
   }
 
   update(){
     //atulizar registro
   }
 
-  async delete(){
-    const { id } = req.params
-    const deleteUser = await usersRepository.delete(id);
+  async delete(res, req){
+    const { id } = res.params
+    try{
+      const deleteUser = await usersRepository.delete(id);
+      req.status(200).send(JSON.stringify({"User delete:": deleteUser}))
 
-    if(!deleteUser){
-      return res.status(404).json({error:'User not found'})
+    }catch(error){
+      return req.status(503).send(JSON.stringify(error.meta.cause))
     }
-
-    res.status(204).end(JSON.stringify("Users delete"))
   }
 }
 

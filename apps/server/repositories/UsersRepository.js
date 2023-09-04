@@ -25,6 +25,8 @@ class UsersRepository{
         password: password,
       }
     })
+
+    
     return user
   }
 
@@ -36,6 +38,7 @@ class UsersRepository{
     })
     return deleteUser
   }
+
 }
 
 export const usersRepository = new UsersRepository();
