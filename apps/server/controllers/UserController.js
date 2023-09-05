@@ -10,37 +10,56 @@ class UserController{
     const { id } = req.params
     try{
       const userById = await usersRepository.findById(id)
+      
+      if(!userById){
+        return res.status(404).end(JSON.stringify("Usuário não encontrado"))
+      }
       return res.status(200).send(JSON.stringify(userById))
+
     }catch(error){
-      return res.status(404).end(JSON.stringify("Ops, ocorreu um error!"))
+      return res.status(500).end(JSON.stringify("Ops, ocorreu um error!"))
     }
   }
 
-  async create(res, req){  
-    const data = res.body;
+  async create(req, res){  
+    const data = req.body;
     try{
       const user = await usersRepository.create(data);
-      return res.status(201).send(JSON.stringify(user))
+      return res.status(201).end(JSON.stringify(user))
+
     }catch(error){
       if(error.code == "P2002"){
-        return req.status(404).send(JSON.stringify("Email já cadastrado"))
+        return res.status(404).end(JSON.stringify("Email já cadastrado"))
       }
-      return req.status(404).end(JSON.stringify("Ops! Aconteceu um erro, tente novamente"))
+      return res.status(500).end(JSON.stringify("Ops! Aconteceu um erro, tente novamente"))
     }
   }
 
-  update(){
-    //atulizar registro
-  }
+  async update(req, res){
+    const {name, email} = req.body
 
-  async delete(res, req){
-    const { id } = res.params
     try{
-      const deleteUser = await usersRepository.delete(id);
-      req.status(200).send(JSON.stringify({"User delete:": deleteUser}))
+      const updateUser = await usersRepository.update(name,email)
+
+      if(!updateUser){
+        return res.status(404).end(JSON.stringify("Usuário não encontrado"))
+      }
+      return res.status(204).send(JSON.stringify(updateUser))
 
     }catch(error){
-      return req.status(503).send(JSON.stringify(error.meta.cause))
+      console.log(error)
+      //return res.status(500).end(JSON.stringify("Ops, ocorreu um error!"))
+    }
+  }
+
+  async delete(req, res){
+    const { id } = req.params
+    try{
+      const deleteUser = await usersRepository.delete(id);
+      return res.status(204).end()
+    }catch(error){
+      const erroPrismaMenssage = error.meta.cause
+      return res.status(503).send(JSON.stringify(erroPrismaMenssage))
     }
   }
 }

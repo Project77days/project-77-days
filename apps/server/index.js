@@ -1,5 +1,5 @@
 import { routes } from './routes.js'
-import express from 'express'
+import express, { request, response } from 'express'
 
 const app = express()
 const port = 3333
