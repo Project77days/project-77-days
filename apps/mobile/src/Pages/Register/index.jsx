@@ -9,6 +9,7 @@ import { Input } from '@/Components/ui/input'
 import { ChevronLeftIcon } from '@radix-ui/react-icons'
 
 import ElipseSuperior from '../../assets/SignIn/elipse-superior.png'
+import axios from 'axios'
 
 const schemaCreateUserForm = z.object({
   name: z.string().min(2, 'Pelo menos 2 caractéres').nonempty(),
@@ -32,9 +33,13 @@ function Register() {
     resolver: zodResolver(schemaCreateUserForm),
   })
 
-  function createUser(data) {
+  const createUser = async (data) => {
     console.log(JSON.stringify(data, null, 2))
-    console.log(errors)
+    try {
+      await axios.post('http://localhost:3001', data)
+    } catch (error) {
+      console.error('Error during regsiter:', error)
+    }
   }
 
   return (
@@ -52,7 +57,7 @@ function Register() {
       />
 
       <section className="z-1 relative -top-6 flex flex-col items-center justify-center">
-        <h1 className="mb-5 text-2xl ">Se cadastre aqui</h1>
+        <h1 className="mb-5 text-2xl">Se cadastre aqui</h1>
         <form
           onSubmit={handleSubmit(createUser)}
           className="mt-4 flex w-full flex-col gap-6"
@@ -79,13 +84,13 @@ function Register() {
           {errors.password && (
             <span className="-mt-4 text-xs">{errors.password.message}</span>
           )}
+
           <label className=" flex justify-center">
             <Checkbox {...register('checkbox')} type="checkbox" />
             <span className="label-text pl-4">Aceito Termos e condições</span>
           </label>
-          {/* {errors.checkbox && <span>{errors.checkbox.message}</span>} */}
 
-          <Button className="btn-primary btn mt-6 w-full" type="submit">
+          <Button size="lg" type="submit" className="w-full">
             Cadastrar
           </Button>
         </form>

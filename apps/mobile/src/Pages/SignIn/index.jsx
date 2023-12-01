@@ -9,6 +9,7 @@ import { ChevronLeftIcon } from '@radix-ui/react-icons'
 
 import ElipseSuperior from '../../assets/SignIn/elipse-superior.png'
 import IlustracaoSignIn from '../../assets/SignIn/ilustratorSingIn.png'
+import axios from 'axios'
 
 const schemaSiginUserForm = z.object({
   email: z
@@ -30,8 +31,12 @@ function SignIn() {
     resolver: zodResolver(schemaSiginUserForm),
   })
 
-  function createUser(data) {
-    return <pre>{JSON.stringify(data, null, 2)}</pre>
+  const loginUser = async (data) => {
+    try {
+      await axios.post('http://localhost:3000', data)
+    } catch (error) {
+      console.error('Error during login:', error)
+    }
   }
 
   return (
@@ -55,19 +60,19 @@ function SignIn() {
         />
 
         <form
-          onSubmit={handleSubmit(createUser)}
+          onSubmit={handleSubmit(loginUser)}
           className="mt-4 flex w-full flex-col gap-6"
         >
-          <Input {...register('email')} type="Email" placeholder="Email" />
+          <Input {...register('email')} type="email" placeholder="Email" />
 
           {errors.email && (
             <span className="-mt-4 text-xs">{errors.email.message}</span>
           )}
 
           <Input
+            {...register('password')}
             type="password"
             placeholder="password"
-            {...register('password')}
           />
 
           {errors.password && (
@@ -78,11 +83,9 @@ function SignIn() {
             Esqueceu a senha?
           </Button>
 
-          <Link to={'/user'} className="w-full">
-            <Button size="lg" type="submit" className="w-full">
-              Entrar
-            </Button>
-          </Link>
+          <Button size="lg" type="submit" className="w-full">
+            Entrar
+          </Button>
         </form>
 
         <p className="mt-6 text-sm">
