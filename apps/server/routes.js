@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import { create, findAll } from './controllers/users/index.js'
+import UserController from './controllers/users/UserController'
 
 export const routes = Router()
 
-routes.get('/', findAll)
-routes.post('/', create)
+routes.get('/user', UserController.findAll)
+routes.post('/register', UserController.create)
