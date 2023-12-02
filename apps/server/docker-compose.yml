@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  mysql:
+    image: postgres:latest
+    container_name: postgresql_77Days
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB= postgresql_77Days
+      - POSTGRES_USER= 77days
+      - POSTGRES_PASSWORD=77days
+    restart: always
