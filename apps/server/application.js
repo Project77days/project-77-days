@@ -2,7 +2,7 @@ import { routes } from './routes.js'
 import express from 'express'
 
 const app = express()
-const port = 3000
+const port = 3333
 
 app.use(express.json())
 app.use(routes)

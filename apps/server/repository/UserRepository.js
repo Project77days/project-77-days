@@ -1,47 +1,33 @@
-// import prisma from '../../database/index.js'
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import query from '../database'
 
 class UserRepository {
   async findAll() {
-    const user = await prisma.user.findMany()
+    const user = await query('SELECT * FROM users')
     return user
   }
 
   async findById(id) {
-    const user = await prisma.user.findUnique({
-      where: { id },
-    })
+    const user = await query('SELECT * FROM users where id = ' + id)
     return user
   }
 
-  async create(body) {
-    const newUser = await prisma.user.create({
-      data: {
-        name: body.name,
-        email: body.email,
-        password: body.password,
-      },
-    })
+  async findByEmail(email) {
+    const user = await query('SELECT * FROM users where email = ' + email)
+    return user
+  }
+
+  async create(name, email, password) {
+    const newUser = await query('c')
     return newUser
   }
 
-  async update(body) {
-    const updateUser = await prisma.user.update({
-      where: { id: body.id },
-      data: {
-        name: body.name,
-        email: body.email,
-        password: body.password,
-      },
-    })
+  async update(id, name, email, password) {
+    const updateUser = await query('c')
     return updateUser
   }
 
   async delete(id) {
-    const user = await prisma.user.delete({
-      where: { id },
-    })
+    const user = await query('delete')
     return user
   }
 }

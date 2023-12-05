@@ -4,9 +4,8 @@ services:
     image: postgres:latest
     container_name: postgresql_77Days
     ports:
-      - "5432:5432"
+      - "3900:5432"
     environment:
-      - POSTGRES_DB= postgresql_77Days
-      - POSTGRES_USER= 77days
-      - POSTGRES_PASSWORD=77days
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
     restart: always
