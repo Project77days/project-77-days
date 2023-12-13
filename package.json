@@ -8,6 +8,7 @@
     "apps/*"
   ],
   "scripts": {
+    "start": "next",
     "husky:prepare": "husky install",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write ."
