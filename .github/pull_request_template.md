@@ -6,6 +6,7 @@
 - [ ] Breaking change (correção ou recurso que faria com que uma funcionalidade existente não funcionasse conforme o esperado)
 
 &nbsp;
+
 ## ✅ Checklist:
 
 - [ ] O título do meu PR está seguindo o padrão `<type>(scope): subject`. Por exemplo: `feat(mobile): add new feature`

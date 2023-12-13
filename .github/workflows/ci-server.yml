@@ -3,15 +3,15 @@ name: CI - Server
 on:
   push:
     paths:
-      - 'apps/server/**'
+      - "apps/server/**"
     branches:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
-      - 'apps/server/**'
+      - "apps/server/**"
     branches:
-      - '**'
+      - "**"
 
 jobs:
   lint:
@@ -23,11 +23,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
+          cache: "npm"
 
       - name: Clean install dependencies
         run: npm install
 
-      - name: Lint 
+      - name: Lint
         run: npm run lint
         working-directory: ./apps/server
